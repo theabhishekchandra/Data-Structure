@@ -11,7 +11,8 @@ public class StartPrinting {
 //        startPrinting.trianglePrintStart1(a);
 //        startPrinting.invertedPrintStart1(a);
 //        startPrinting.printHalfPyramid(a);
-        startPrinting.printCharacter(a);
+//        startPrinting.printCharacter(a);
+        startPrinting.printHollowRectangle(a);
 
 
     }
@@ -100,6 +101,31 @@ public class StartPrinting {
             for (int j = 0; j < i; j++){
                 System.out.print(ch);
                 ch++;
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Prints a hollow rectangle pattern of asterisks based on the input size.
+     * The rectangle will have asterisks on the borders and spaces in the inner area.
+     *Enter a number: 5
+     *       * * * * * *
+     *       *         *
+     *       *         *
+     *       *         *
+     *       *         *
+     *       * * * * * *
+     * @param a the size of the rectangle, determining both the width and height
+     */
+    private void printHollowRectangle(int a) {
+        for (int i = 0; i <= a; i++) {
+            for (int j = 0; j <= a; j++) {
+                if (i == 0 || i == a || j == 0 || j == a) {
+                    System.out.print("* ");
+                } else {
+                    System.out.print("  ");
+                }
             }
             System.out.println();
         }
