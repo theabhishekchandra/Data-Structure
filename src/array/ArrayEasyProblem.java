@@ -11,7 +11,7 @@ public class ArrayEasyProblem {
 //        int[] nums = {2,2,2,2,2,2,7,7,7,7,7,11,11,11,11,15,15,15,15,15,15};
 //        int target = 9;
 //        int[] nums = { 1, 3, 5, 6};
-        int[] nums = {0,1,2,3,4};
+        int[] nums = {2,5,6,9,10};
         int[] index = {0,1,2,2,1};
         int target = 7;
 
@@ -20,7 +20,7 @@ public class ArrayEasyProblem {
 //        System.out.println("Two Sum : " + Arrays.toString(input.twoSum(nums, target)));
 //        System.out.println("Output : " + input.removeDuplicates(nums));
 //        System.out.println("Output : " + input.searchInsert(nums, target));
-        System.out.println("Output : " + Arrays.toString(input.createTargetArray(nums, index)));
+        System.out.println("Output : " + input.findGCD(nums));
 //        int[] temp = new int[5];
 ////        for (int j : temp){
 ////            System.out.println("Output : " + j);
@@ -184,6 +184,58 @@ public class ArrayEasyProblem {
             leftSum += nums[i];
         }
         return -1;
+    }
+    /** 1929. Concatenation of Array */
+    public int[] getConcatenation(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[n * 2];
+        for (int i = 0; i < n; i++) {
+            ans[i] = nums[i];
+            ans[i + n] = nums[i];
+        }
+        return ans;
+    }
+
+    /**
+     * 1920. Build Array from Permutation
+     */
+    public int[] buildArray(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            nums[i] = nums[i] + (nums[nums[i]] % n) * n;
+        }
+        for (int i = 0; i < n; i++) {
+            nums[i] = nums[i] / n;
+        }
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        return nums;
+    }
+
+    /**
+     * 1979. Find Greatest Common Divisor of Array
+     */
+    public int findGCD(int[] nums) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        for (int i : nums) {
+            max = Math.max(max, i);
+            min = Math.min(min, i);
+        }
+
+        return gcd(max, min);
+    }
+
+    /** 1. **Euclidean Algorithm**:
+     - The Euclidean Algorithm is based on the property that the GCD of two numbers does not change if the larger number is replaced by its remainder when divided by the smaller number.
+     */
+
+    private int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
     }
 
 }
