@@ -1,9 +1,6 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class ArrayEasyProblem {
     public static void main(String[] args){
@@ -236,6 +233,104 @@ public class ArrayEasyProblem {
             return a;
         }
         return gcd(b, a % b);
+    }
+    /** Max Sum Subarray of size K.
+     * via Using Sliding Window Algorithm.
+     */
+    public int maximumSumSubarray(int[] arr, int k) {
+        int maxSum = 0;
+        int sum = 0;
+        int index = 0;
+
+        while (index < arr.length && index < k){
+            sum += arr[index];
+            index++;
+        }
+        maxSum = sum;
+        for (int i = 1; i < arr.length - k + 1;i++){
+            sum = sum - arr[i-1] + arr[i + k -1];
+            maxSum = Math.max(sum, maxSum);
+        }
+        return maxSum;
+    }
+
+    /** 219. Contains Duplicate II */
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i]) && (i - map.get(nums[i]) <= k)) {
+                return true;
+            }
+            map.put(nums[i], i);
+        }
+        return false;
+    }
+    /** 283. Move Zeroes. */
+    public void moveZeroes(int[] nums) {
+        int nonZeroIndex = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[nonZeroIndex++] = nums[i];
+            }
+        }
+
+        while (nonZeroIndex < nums.length) {
+            nums[nonZeroIndex++] = 0;
+        }
+    }
+
+    /**
+     * 268. Missing Number
+     */
+    public int missingNumber(int[] nums) {
+        int total = nums.length * (nums.length + 1) / 2;
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        return total - sum;
+    }
+    /** 349. Intersection of Two Arrays. */
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> resultSet = new HashSet<>();
+
+        // Add all elements from nums1 into set1
+        for (int num : nums1) {
+            set1.add(num);
+        }
+
+        // Check if elements of nums2 exist in set1, if so, add to resultSet
+        for (int num : nums2) {
+            if (set1.contains(num)) {
+                resultSet.add(num);
+            }
+        }
+
+        // Convert resultSet to an array
+        int[] result = new int[resultSet.size()];
+        int index = 0;
+        for (int num : resultSet) {
+            result[index++] = num;
+        }
+
+        return result;
+    }
+
+    /**
+     * 414. Third Maximum Number
+     */
+    public int thirdMax(int[] nums) {
+        Set<Integer> set1 = new HashSet<>();
+        for (int i : nums) {
+            set1.add(i);
+        }
+
+        List<Integer> sortedList = new ArrayList<>(set1);
+        sortedList.sort(Collections.reverseOrder());
+
+        return sortedList.size() >= 3 ? sortedList.get(2) : sortedList.get(0);
     }
 
 }
