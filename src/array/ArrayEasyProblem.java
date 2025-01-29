@@ -333,4 +333,5 @@ public class ArrayEasyProblem {
         return sortedList.size() >= 3 ? sortedList.get(2) : sortedList.get(0);
     }
 
+    
 }
