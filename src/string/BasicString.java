@@ -19,7 +19,7 @@ public class BasicString {
         System.out.println("Enter String Number: ");
         Scanner sc = new Scanner(System.in);
         String value = sc.nextLine();
-        System.out.println(upperCase(value));
+        System.out.println(romanToInt(value));
 
 
 
@@ -95,6 +95,51 @@ public class BasicString {
 
     static void compression(String a){
 
+    }
+
+    /** 13. Roman to Integer*/
+    public static int romanToInt(String s) {
+        int total = 0;
+        int pre = 0;
+        for (int i = s.length() -1 ; i>= 0;i--){
+            int cur = getValue(s.charAt(i));
+            if (cur < pre){
+                total -= cur;
+            }else {
+                total += cur;
+            }
+
+            pre =cur;
+        }
+
+        return total;
+    }
+    private static int getValue(char c) {
+        return switch (c) {
+            case 'I' -> 1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default -> 0;
+        };
+    }
+
+    /** 14. Longest Common Prefix. */
+    public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            while (strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.isEmpty()) return "";
+            }
+        }
+        return prefix;
     }
 
 }
