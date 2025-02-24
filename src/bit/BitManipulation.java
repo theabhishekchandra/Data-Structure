@@ -39,12 +39,17 @@ public class BitManipulation {
     private static int XOR(int a, int b){
         return a ^ b;
     }
-    /** Left Shift Formula -> a << b = a * b²*/
+    /** Left Shift Formula -> a << b = a * b²
+     * <p> a means binary value or integer value.
+     * <p>b means number lines you what shift.
+     * */
     private static int leftShift(int a, int b){
         return a << b;
     }
 
-    /** Right Shift Formula -> a >> b = a / b²*/
+    /** Right Shift Formula -> a >> b = a / b²
+     *<p> a means binary value or integer value.
+     *<p>b means number lines you what shift.*/
     private static int rightShift(int a, int b){
         return a >> b;
     }
