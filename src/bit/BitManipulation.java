@@ -5,7 +5,7 @@ public class BitManipulation {
      * AND & <p>
      * OR | <p>
      * XOR ^ <p>
-     * One's Complement ~ -> It changes the digit like if you provide 0 then it returns 1.<p>
+     * NOT: One's Complement ~ -> It changes the digit like if you provide 0 then it returns 1.<p>
      * Left Shift << <p>
      * Right Shift >> <p>
      * NOTE: (-1) = (~0); means all bits are 1.

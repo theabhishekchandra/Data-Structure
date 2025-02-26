@@ -1,9 +1,12 @@
 package bit;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 public class BinaryBasic {
     public static void main(String[] args){
+
+//        System.out.println("Most Value: " + findComplement(8));
 
     }
 
@@ -65,6 +68,46 @@ public class BinaryBasic {
             return true;
         }else return false;
         }*/
+    }
+    /** 476. Number Complement*/
+
+    public int findComplement(int num) {
+        // highestOneBit return only last left 1's of this number all binary value in this bit.
+        int mask = (Integer.highestOneBit(num) << 1) - 1;
+        return num ^ mask;
+    }
+    public int[] findErrorNums(int[] nums) {
+        int[] ans = new int[nums.length -1];
+        int pre = nums[0];
+        ans[0] = pre;
+        for (int i = 1; i < nums.length; i++){
+            if (pre != nums[i]){
+                ans[i-1] = nums[i];
+            }
+        }
+        return ans;
+    }
+    /** 2859. Sum of Values at Indices With K Set Bits*/
+    public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
+        int sum = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            int index = i;
+            int count = 0;
+
+            // Count the number of set bits in the index
+            while (index > 0) {
+                count += (index & 1); // If the last bit is set, increase count
+                index >>= 1; // Right shift index
+            }
+
+            // If count of set bits equals k, add nums[i] to sum
+            if (count == k) {
+                sum += nums.get(i);
+            }
+        }
+
+        return sum;
     }
 
 
