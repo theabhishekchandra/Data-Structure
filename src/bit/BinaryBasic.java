@@ -1,5 +1,7 @@
 package bit;
 
+import java.lang.reflect.Array;
+
 public class BinaryBasic {
     public static void main(String[] args){
 
@@ -31,5 +33,39 @@ public class BinaryBasic {
         }
         return ans;
     }
+    /*public int[] countBits(int n) {
+        int[] ans = new int[n +1];
+        int count = 0;
+        while (n > 0){
+            if ((n & 1) != 0){
+                count++;
+            }
+            n = n >> 1;
+        }
+        for ()
+
+        return ans;
+    }*/
+
+
+    /** 342. Power of Four*/
+    public boolean isPowerOfFour(int n) {
+        if (n <= 0) return false;
+
+        if ((n & (n - 1)) != 0) return false;
+
+        return (n & 0xAAAAAAAA) == 0;
+        /*
+        *public boolean isPowerOfFour(int n) {
+        if (n==0) return false;
+        while(n%4==0){
+            n/=4;
+        }
+        if(n==1){
+            return true;
+        }else return false;
+        }*/
+    }
+
 
 }

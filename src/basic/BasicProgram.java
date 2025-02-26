@@ -5,12 +5,18 @@ import java.util.Scanner;
 public class BasicProgram {
 
     public static void main(String[] args) {
-        BasicProgram basicProgram = new BasicProgram();
+        /*BasicProgram basicProgram = new BasicProgram();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int a = scanner.nextInt();
 //        System.out.println(basicProgram.isPrime(a));
-        System.out.println(basicProgram.getFactorial(a));
+        System.out.println(basicProgram.getFactorial(a));*/
+
+
+
+        Calculator calculator = new Calculator(2,3);
+        System.out.println(" Sum " + calculator.sum());
+
     }
     /**
      * Determines whether a given integer is a prime number.

@@ -25,7 +25,8 @@ public class BitManipulation {
 //        System.out.println("Bit Range is: " + clearRangeOfBits(10, 2,4));
 //        System.out.println("Is Two Power: " + isPowOfTwo(5));
 //        System.out.println("Count Set Bit: " + countSetBits(8));
-        System.out.println("Count Set Bit: " + fastExpo(8,2));
+//        System.out.println("Count Set Bit: " + fastExpo(8,2));
+        swipeTwoNumber(9,4);
 
     }
 
@@ -133,6 +134,12 @@ public class BitManipulation {
             n = n >> 1;
         }
         return ans;
+    }
+    private static void swipeTwoNumber(int a, int b){
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        System.out.println("a:" + a + "b:" + b);
     }
 
 
