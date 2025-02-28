@@ -9,7 +9,7 @@ public class Sorting {
         int[] basicArray = {5,4,1,3,2};
 //        selectionSort(basicArray);
 //        insertionSort(basicArray);
-        countingSort(basicArray);
+        quickSort(basicArray,0,basicArray.length-1);
         System.out.println(Arrays.toString(basicArray));
 
     }
@@ -72,4 +72,77 @@ public class Sorting {
             }
         }
     }
+
+    static void mergeSort(int[] arr, int si, int ei){
+        // Base of Recursion.
+        if (si >= ei){
+            return;
+        }
+        // Get Mid of Array
+        int mid = si + (ei - si)/2;
+        mergeSort(arr, si, mid);
+        mergeSort(arr, mid+1, ei);
+
+        merge(arr, si, mid, ei);
+
+    }
+
+    private static void merge(int[] arr, int si, int mid, int ei) {
+        int[] temp = new int[ei - si + 1];
+        int i = si, j = mid + 1, k = 0;
+
+        while (i <= mid && j <= ei) {
+            if (arr[i] < arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
+            }
+        }
+
+        // Copy remaining elements from the left half
+        while (i <= mid) {
+            temp[k++] = arr[i++];
+        }
+
+        // Copy remaining elements from the right half
+        while (j <= ei) {
+            temp[k++] = arr[j++];
+        }
+
+        for (int l = 0; l < temp.length; l++) {
+            arr[si + l] = temp[l];
+        }
+    }
+
+    static void quickSort(int[] arr, int si, int ei){
+        if (si>=ei) return;
+
+        int pix = partition(arr,si,ei);
+
+        quickSort(arr,si,pix-1);
+        quickSort(arr, pix, ei);
+
+    }
+    static int partition(int[] arr, int si, int ei) {
+        int pivot = arr[ei];
+        int i = si - 1; // To make place for els smaller than pivot.
+
+        for (int j = si; j < ei; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                // Swap arr[i] and arr[j]
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+        }
+        // Swap pivot into its correct position
+        i++;
+        int temp = arr[ei];
+        arr[ei] = arr[i];
+        arr[i] = temp;
+
+        return i;
+    }
+
 }
