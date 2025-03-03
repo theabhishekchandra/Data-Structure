@@ -1,6 +1,7 @@
 package backtracking;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class BackTracking {
     /** TYPE OF BACKTRACKING <p>
@@ -22,14 +23,14 @@ public class BackTracking {
             }
         }
         nQueen(board,0);*/
-        char[][] sudokuBoard = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},
+       /* char[][] sudokuBoard = {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},
                 {'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},
                 {'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},
                 {'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},
                 {'.','.','.','.','8','.','.','7','9'}};
         /// Sudoku Problem
-        sudoku(sudokuBoard,0,0);
-//        printBoard(sudokuBoard);
+        sudoku(sudokuBoard,0,0);*/
+
 
     }
 

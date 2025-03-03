@@ -16,10 +16,11 @@ public class BasicString {
 
 
     public static void main(String[] args){
-        System.out.println("Enter String Number: ");
-        Scanner sc = new Scanner(System.in);
-        String value = sc.nextLine();
-        System.out.println(romanToInt(value));
+//        System.out.println("Enter String Number: ");
+//        Scanner sc = new Scanner(System.in);
+//        String value = sc.nextLine();
+        String s = "0P";
+        System.out.println(new BasicString().isPalindrome(s));
 
 
 
@@ -140,6 +141,24 @@ public class BasicString {
             }
         }
         return prefix;
+    }
+    /// 125. Valid Palindrome
+    public boolean isPalindrome(String s) {
+        String str = s.replaceAll("[^a-zA-Z]","");
+        str = str.toLowerCase();
+        int start = 0;
+        int end = str.length() -1;
+
+        while (start < end){
+
+            if (str.charAt(start) == str.charAt(end)){
+                start++;
+                end--;
+            }else {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
