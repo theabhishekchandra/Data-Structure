@@ -71,4 +71,34 @@ public class Daily {
         return true;
 
     }
+    /// 2965. Find Missing and Repeated Values
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int size = grid.length;  // N (since the grid is N x N)
+        int totalSum = (size * size) * (size * size + 1) / 2; // Correct total sum
+        int[] ans = new int[2];  // ans[0] = repeated, ans[1] = missing
+
+        HashSet<Integer> temp = new HashSet<>();
+        int actualSum = 0;
+        int repeatedValue = -1;
+
+        // Collect values and detect repeated value
+        for (int[] row : grid) {
+            for (int num : row) {
+                if (temp.contains(num)) {
+                    repeatedValue = num;  // Found the repeated number
+                }
+                temp.add(num);
+                actualSum += num;
+            }
+        }
+
+        // Calculate missing value
+        int missingValue = totalSum - (actualSum - repeatedValue);
+
+        // Store the result
+        ans[0] = repeatedValue;
+        ans[1] = missingValue;
+
+        return ans;
+    }
 }
