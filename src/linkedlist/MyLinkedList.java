@@ -228,4 +228,60 @@ public class MyLinkedList {
         if (idx == -1) return -1;
         return idx +1;
     }
+
+    static MyLinkedList.Node getMid(MyLinkedList.Node head){
+        MyLinkedList.Node slow = head;
+        MyLinkedList.Node fast = head.next;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    static MyLinkedList.Node merge(MyLinkedList.Node head1, MyLinkedList.Node head2){
+        MyLinkedList.Node merged = new MyLinkedList.Node(-1);
+        MyLinkedList.Node temp  = merged;
+
+        while (head1 != null && head2 != null){
+            if (head1.data <= head2.data){
+                temp.next = head1;
+                head1 = head1.next;
+                temp = temp.next;
+            }else {
+                temp.next = head2;
+                head2 = head2.next;
+                temp = temp.next;
+            }
+        }
+
+        while (head1 != null){
+            temp.next = head1;
+            head1 = head1.next;
+            temp = temp.next;
+        }
+        while (head2 != null){
+            temp.next = head2;
+            head2 = head2.next;
+            temp = temp.next;
+        }
+        return merged.next;
+    }
+    static MyLinkedList.Node mergeSortOnLinkedList(MyLinkedList.Node head){
+        if (head == null || head.next == null){
+            return head;
+        }
+        // Find Mid
+        MyLinkedList.Node mid = getMid(head);
+
+        // Split into two parts.
+        MyLinkedList.Node rightHead = mid.next;
+        mid.next = null;
+        MyLinkedList.Node newLeft = mergeSortOnLinkedList(head);
+        MyLinkedList.Node newRight = mergeSortOnLinkedList(rightHead);
+        // sort
+        return merge(newLeft, newRight);
+    }
+
+
 }
