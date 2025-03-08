@@ -143,4 +143,96 @@ public class Daily {
 
         return closestPair;
     }
+
+    /// 2. Add Two Numbers
+    /*
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode();
+        ListNode current = dummy; // Pointer List
+        int cary = 0;
+
+        while (l1 != null || l2 != null || cary != 0){
+            int sum = cary;
+
+            // add Sum and check the next node.
+            if (l1 != null){
+                sum += l1.val;
+                l1 = l1.next;
+            }
+
+            if (l2 != null){
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            // Get carry
+            cary = sum / 10;
+            // Set current next value with new Node.
+            current.next = new ListNode(sum % 10);
+            // Change next current Node as Current Node.
+            current = current.next;
+        }
+        return dummy.next; // Start with 2nd Node.
+    }*/
+
+    public class ListNode {
+         int val;
+         ListNode next;
+         ListNode() {}
+         ListNode(int val) { this.val = val; }
+         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+    ///  21. Merge Two Sorted Lists.
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode sorted = new ListNode(-1);
+        ListNode temp = sorted;
+
+        while (list1 != null && list2 != null){
+            if (list1.val <= list2.val){
+                temp.next = list1;
+                list1 = list1.next;
+                temp= temp.next;
+            }else {
+                temp.next = list2;
+                list2 = list2.next;
+                temp = temp.next;
+            }
+        }
+
+        while (list1 != null){
+            temp.next = list1;
+            list1 = list1.next;
+            temp= temp.next;
+        }
+        while (list2 != null){
+            temp.next = list2;
+            list2 = list2.next;
+            temp = temp.next;
+        }
+        return sorted.next;
+    }
+
+    /// 19. Remove Nth Node From End of List
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = head;
+        int size = 0;
+        while (dummy != null){
+            size++;
+            dummy = dummy.next;
+        }
+        if (size == n){
+            return head.next;
+        }
+        int i = 1;
+        size = size - n;
+        ListNode pre = head;
+        while (i < size){
+            pre = pre.next;
+            i++;
+        }
+        pre.next = pre.next.next;
+        return head;
+    }
+
 }
