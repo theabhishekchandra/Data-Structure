@@ -175,64 +175,18 @@ public class Daily {
         return dummy.next; // Start with 2nd Node.
     }*/
 
-    public class ListNode {
-         int val;
-         ListNode next;
-         ListNode() {}
-         ListNode(int val) { this.val = val; }
-         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
-    ///  21. Merge Two Sorted Lists.
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode sorted = new ListNode(-1);
-        ListNode temp = sorted;
-
-        while (list1 != null && list2 != null){
-            if (list1.val <= list2.val){
-                temp.next = list1;
-                list1 = list1.next;
-                temp= temp.next;
-            }else {
-                temp.next = list2;
-                list2 = list2.next;
-                temp = temp.next;
+    /// 2529. Maximum Count of Positive Integer and Negative Integer.
+    public int maximumCount(int[] nums) {
+        int pos = 0;
+        int neg = 0;
+        for(int num : nums){
+            if (num < 0){
+                neg++;
+            }else if(num > 0){
+                pos++;
             }
         }
-
-        while (list1 != null){
-            temp.next = list1;
-            list1 = list1.next;
-            temp= temp.next;
-        }
-        while (list2 != null){
-            temp.next = list2;
-            list2 = list2.next;
-            temp = temp.next;
-        }
-        return sorted.next;
-    }
-
-    /// 19. Remove Nth Node From End of List
-
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummy = head;
-        int size = 0;
-        while (dummy != null){
-            size++;
-            dummy = dummy.next;
-        }
-        if (size == n){
-            return head.next;
-        }
-        int i = 1;
-        size = size - n;
-        ListNode pre = head;
-        while (i < size){
-            pre = pre.next;
-            i++;
-        }
-        pre.next = pre.next.next;
-        return head;
+        return (int)Math.max(pos,neg);
     }
 
 }
