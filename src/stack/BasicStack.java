@@ -13,7 +13,7 @@ public class BasicStack {
         stack.add(3);
         reverseStack(stack);
         String str = "abc";
-        System.out.println(stack);
+        System.out.println(isValidPare("((){[}])"));
     }
 
     ///  Q1. Push at the bottom of the stack;
@@ -56,4 +56,70 @@ public class BasicStack {
         pushAtBottom(stack,top);
     }
     /// Q4. Stock Span Problem.
+    public static void stockSpam(int[] stock, int[] span){
+        Stack<Integer> s = new Stack<>();
+        span[0] = 1;
+        s.push(0);
+        for (int i = 0; i < stock.length; i++) {
+            int curr = stock[i];
+            while (!s.isEmpty() && curr > stock[s.peek()]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                span[i] = i +1;
+            }else {
+                int preH = s.peek();
+                span[i] = i - preH;
+            }
+            s.push(i);
+
+        }
+    }
+
+    /// Q5. Next Greater Element.
+    public static void nextGreaterElement(int[] arr){
+        Stack<Integer> stack = new Stack<>();
+        int[] nxtGenerate = new int[arr.length];
+        for (int i = arr.length -1; i >= 0; i--){
+
+            while (!stack.empty() && arr[stack.peek()] <= arr[i]){
+                stack.pop();
+            }
+
+            if (stack.empty()){
+                nxtGenerate[i] = -1;
+            }else {
+                nxtGenerate[i] = arr[stack.peek()];
+            }
+
+            stack.push(i);
+        }
+
+        for (int num : nxtGenerate){
+            System.out.println(num);
+        }
+    }
+
+    ///  Q6. Validate Parentheses.
+    public static Boolean isValidPare(String str){
+        Stack<Character> s = new Stack<>();
+
+        for (int i = 0 ; i < str.length(); i++){
+            // Opening Parentheses
+            if (str.charAt(i) == '(' || str.charAt(i) == '{' || str.charAt(i) == '['){
+                s.push(str.charAt(i));
+            }else {
+                if (s.empty()) {
+                    return false;
+                }
+                if ((s.peek() == '(' && str.charAt(i) == ')') || (s.peek() == '{' && str.charAt(i) == '}') || (s.peek() == '[' && str.charAt(i) == ']')){
+                    s.pop();
+                }else {
+                    return false;
+                }
+
+            }
+        }
+        return s.isEmpty();
+    }
 }
