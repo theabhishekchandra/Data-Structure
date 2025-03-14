@@ -13,7 +13,8 @@ public class BasicStack {
         stack.add(3);
         reverseStack(stack);
         String str = "abc";
-        System.out.println(isValidPare("((){[}])"));
+//        System.out.println(isValidPare("((){[}])"));
+        System.out.println(isDuplicatePare("(((a + b)) + (a - b))"));
     }
 
     ///  Q1. Push at the bottom of the stack;
@@ -122,4 +123,33 @@ public class BasicStack {
         }
         return s.isEmpty();
     }
+    /// Q7. Check Duplicate Parentheses.
+    public static Boolean isDuplicatePare(String string){
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < string.length(); i++){
+            char ch = string.charAt(i);
+
+            // For Close
+            if (ch == ')'){
+                int count = 0;
+                while (stack.peek() != '('){
+                    stack.pop();
+                    count++;
+                }
+                if (count < 1){
+                    return true; // Is Duplicate
+                }else {
+                    stack.pop(); // Is pair
+                }
+
+            }else {
+                // For Open
+                stack.push(ch);
+            }
+
+        }
+        return false;
+    }
+
+    ///  Q8. Max Area in Histogram.
 }
