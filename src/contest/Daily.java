@@ -188,5 +188,41 @@ public class Daily {
         }
         return (int)Math.max(pos,neg);
     }
+    /// 2560. House Robber IV.
+    public int minCapability(int[] nums, int k) {
+        int left = Arrays.stream(nums).min().getAsInt(); // Minimum house value
+        int right = Arrays.stream(nums).max().getAsInt(); // Maximum house value
+        int result = right;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // Mid-point (candidate max rob amount)
+
+            if (canRob(nums, k, mid)) {
+                result = mid;  // Save the valid result
+                right = mid - 1; // Try a smaller max robbery amount
+            } else {
+                left = mid + 1; // Increase min max robbery amount
+            }
+        }
+
+        return result;
+    }
+
+    private boolean canRob(int[] nums, int k, int maxRob) {
+        int count = 0;  // Number of houses robbed
+        int i = 0;
+
+        while (i < nums.length) {
+            if (nums[i] <= maxRob) { // Can rob this house
+                count++;
+                i += 2; // Skip adjacent house
+                if (count >= k) return true; // Already robbed `k` houses
+            } else {
+                i++;
+            }
+        }
+
+        return false;
+    }
 
 }
