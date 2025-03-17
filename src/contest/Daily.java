@@ -224,5 +224,16 @@ public class Daily {
 
         return false;
     }
+    /// 2206. Divide Array Into Equal Pairs.
+    public boolean divideArray(int[] nums) {
+        int[] freq = new int[501]; // Constraint: 1 <= nums[i] <= 500
+        for (int num : nums) {
+            freq[num]++;
+        }
+        for (int count : freq) {
+            if (count % 2 != 0) return false;
+        }
+        return true;
+    }
 
 }
