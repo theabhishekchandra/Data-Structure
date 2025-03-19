@@ -235,5 +235,49 @@ public class Daily {
         }
         return true;
     }
+    /// 2401. Longest Nice Subarray
+    public int longestNiceSubarray(int[] nums) {
+        int left = 0, maxLength = 0, bitMask = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            // Ensure the window remains "nice" by removing elements from the left
+            while ((bitMask & nums[right]) != 0) {
+                bitMask ^= nums[left]; // Remove nums[left] from bitMask
+                left++;
+            }
+
+            // Add the current number to the bitMask
+            bitMask |= nums[right];
+
+            // Update max length
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+
+    /// 3191. Minimum Operations to Make Binary Array Elements Equal to One I. eg -> nums = [0,1,1,1,0,0]
+    public int minOperations(int[] nums) {
+        int flipCount = 0;
+        int size = nums.length;
+
+        for (int i = 0; i < nums.length -2; i++) {
+
+            if (nums[i] == 0){
+                for (int j = i; j < i + 2; j++){
+                    nums[j] ^= nums[j];
+                }
+                flipCount++;
+            }
+
+        }
+        // If the last two elements are not both 1s, it's impossible
+        if (nums[size - 1] == 1 && (size == 1 || nums[size - 2] == 1)) {
+            return flipCount;
+        }
+
+        return -1;
+
+    }
 
 }
