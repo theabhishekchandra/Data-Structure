@@ -100,7 +100,107 @@ public class BinaryTreeBasic {
         }
     }
     /// Height of Tree.
+    static int heightOfTree(Node root){
+        if (root == null){
+            return 0;
+        }
 
+        int lh = heightOfTree(root.left);
+        int rh = heightOfTree(root.right);
+
+        return (int)Math.max(lh, rh) + 1;
+    }
+
+    ///  Count the number of nodes in the tree.
+
+    static int countTreeNode(Node root){
+        if (root == null){
+            return 0;
+        }
+
+        int lc = countTreeNode(root.left);
+        int rc = countTreeNode(root.right);
+
+        return lc + rc + 1;
+    }
+
+    ///  Sum of node.
+    static int sumOfNode(Node root){
+        if (root == null){
+            return 0;
+        }
+
+        int ls = sumOfNode(root.left);
+        int rs = sumOfNode(root.right);
+
+        return ls + rs + root.data;
+    }
+
+    ///  Diameter of a tree -> No of nodes in the longest path between any two leaves.
+
+    static int diameter(Node root){
+        if (root == null){
+            return 0;
+        }
+
+        int lD = diameter(root.left);
+        int lH = heightOfTree(root.left);
+        int rD = diameter(root.right);
+        int rH = heightOfTree(root.right);
+
+        int selfDia = lH + rH + 1;
+
+        return Math.max(selfDia, Math.max(lD,rD));
+    }
+
+    ///  Subtree of another Tree -> Given the root of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subTree and false otherwise.
+    static Boolean subtreeOfTree(Node root, Node subNode){
+        if (root == null){
+            return false;
+        }
+
+        if (root.data == subNode.data){
+            if (isIdentical(root,subNode)){
+                return true;
+            }
+        }
+
+        return subtreeOfTree(root.left, subNode) || subtreeOfTree(root.right,subNode);
+    }
+    static Boolean isIdentical(Node root, Node subTree){
+        if (root == null && subTree == null){
+            return true;
+        }else if(root == null || subTree == null || subTree.data != root.data){
+            return false;
+        }
+        if (!isIdentical(root.left, subTree.left)){
+            return false;
+        }
+        if (!isIdentical(root.right, subTree.right)){
+            return false;
+        }
+        
+        return true;
+    }
+
+    /// K-Level of tree.
+
+    static void KLevel(Node root, int level, int k){
+        if (root == null){
+            return;
+        }
+
+        if (root.data == k){
+            System.out.print(root.data + " ");
+            return;
+        }
+
+        KLevel(root.left, level + 1,k);
+        KLevel(root.right, level + 1,k);
+
+    }
+
+    ///  Lowest common ancestor.
 
 
 }
