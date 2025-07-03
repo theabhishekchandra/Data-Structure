@@ -40,7 +40,7 @@ public class ArrayBasic {
 //        arrayBasic.maxSubArraySub();
 //        arrayBasic.kadanes();
 //        arrayBasic.trappingRainwater();
-        System.out.println("Profit : " + arrayBasic.buyAndSellStocks(stock));
+        System.out.println("Profit : " + Arrays.toString(arrayBasic.getProductOf(stock)));
 
     }
 
@@ -148,7 +148,7 @@ public class ArrayBasic {
         }
         System.out.println("Max sum is : "+ maxSub);
     }
-    /** @URI https://leetcode.com/problems/trapping-rain-water/description/
+    /** @URI <a href="https://leetcode.com/problems/trapping-rain-water/description/">...</a>
      * 42. Trapping Rain Water
      * Given n non-negative integers representing an elevation map where the width of each bar is 1,
      * compute how much water it can trap after raining.
@@ -192,5 +192,33 @@ public class ArrayBasic {
             }
         }
         return maxProfit;
+    }
+
+    private int[] getProductOf(int[] arr){
+        int size = arr.length;
+        int[] result = new int[size];
+        int product = 1;
+
+        for (int a = 0; a < arr.length; a++) {
+            for (int i = 0; i < arr.length; i++) {
+                if (a != i){
+                    product *= arr[i];
+                }
+            }
+            result[a] = product;
+            product = 1;
+
+        }
+        return result;
+
+        /*for (int i = 0; i < arr.length; i++) {
+            product *= arr[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = product/ arr[i];
+
+        }
+        return result;*/
     }
 }

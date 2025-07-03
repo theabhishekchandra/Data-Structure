@@ -146,10 +146,12 @@ public class BasicStack {
                 // For Open
                 stack.push(ch);
             }
+            
 
         }
         return false;
     }
 
     ///  Q8. Max Area in Histogram.
+
 }

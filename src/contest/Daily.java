@@ -1,14 +1,18 @@
 package contest;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class Daily {
     public static void main(String[] args) {
 
+        int[] data = {5,5,9,2,5,5,9,2,2,5,5,6,2,2,5,2,5,4,3};
+
         Daily daily = new Daily();
-        int[] list = {9,12,5,10,14,3,10};
-        daily.pivotArray(list, 10);
-        System.out.println(Arrays.toString(list));
+        /*int[] list = {9,12,5,10,14,3,10};
+        daily.pivotArray(list, 10)*/;
+        System.out.println(daily.countPairs(data, 7));
     }
     /** 2570. Merge Two 2D Arrays by Summing Values */
     public static int[][] mergeArrays(int[][] nums1, int[][] nums2) {
@@ -278,6 +282,18 @@ public class Daily {
 
         return -1;
 
+    }
+    /// 2176. Count Equal and Divisible Pairs in an Array.
+    public int countPairs(int @NotNull [] nums, int k) {
+        int count = 0;
+        for(int i = 0; i < nums.length -1; i++){
+            for(int j = i + 1; j < nums.length; j++){
+                if(nums[i] == nums[j] && (i * j) % 2 == 0){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 }
