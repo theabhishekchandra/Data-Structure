@@ -43,6 +43,70 @@ public class HashingBasic {
             System.out.println(k);
 
         };
+        // Contains
+        if (hashMap.containsKey("B")){
+            System.out.println("Done");
+        }else {
+            System.out.println("No");
+        }
 
+//        hashMap.remove("B");
+        System.out.println(hashMap.size());
+
+        int[] nums =  { 1,3,2,5,1,3,1,5,1};
+
+        System.out.println(
+                isAnagram(
+                        "nums","snum"
+                )
+        );
+
+    }
+    /// Majority Elements -> Given an integer array of size n, find all elements that appear more than ["n"/3] times. nums[] = { 1,3,2,5,1,3,1,5,1};
+    static void MajorElem(int[] nums){
+        HashMap<Integer, Integer> freq = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+//            if (freq.containsKey(nums[i])){
+//                freq.put(nums[i], freq.get(nums[i]) + 1 );
+//            }else {
+//                freq.put(nums[i], 1 );
+//            }
+            freq.put(nums[i],freq.getOrDefault(nums[i],0) + 1 );
+        }
+//        Set<Integer> set = freq.keySet();
+//        for (int n : set){
+//           if (freq.get(n) > nums.length/3){
+//               System.out.println(n);
+//           }
+//        }
+
+        for (int n : freq.keySet()){
+           if (freq.get(n) > nums.length/3){
+               System.out.println(n);
+           }
+        }
+    }
+
+    ///  Valid Anagram ->
+    static Boolean isAnagram(String s, String t){
+        if (s.length() != t.length()) return false;
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++){
+            if (hashMap.containsKey(s.charAt(i))){
+                hashMap.put(s.charAt(i),hashMap.get(s.charAt(i)) + 1 );
+            }else {
+                hashMap.put(s.charAt(i),1);
+            }
+
+        }
+        for (int i = 0; i < t.length(); i++){
+            if (hashMap.containsKey(t.charAt(i))){
+                hashMap.put(s.charAt(i),hashMap.get(t.charAt(i)) - 1);
+            }else {
+                return false;
+            }
+        }
+        return true;
     }
 }
