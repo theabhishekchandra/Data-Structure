@@ -13,9 +13,27 @@ public class BasicProgram {
         System.out.println(basicProgram.getFactorial(a));*/
 
 
+//
+//        Calculator calculator = new Calculator(2,3);
+//        System.out.println(" Sum " + calculator.sum());
 
-        Calculator calculator = new Calculator(2,3);
-        System.out.println(" Sum " + calculator.sum());
+        String s1 = "Hello";
+//        String s2 = "Hello";
+//        String s3 = new String("Hello");
+//
+//        System.out.println("Start of P -> :" + s1.hashCode() + "  Mid of P -> :" + s2.hashCode() + "   End of P -> :" + s3.hashCode() );
+//        System.out.println(s1 == s3);
+//        System.out.println(s1.equals(s3));
+        s1 = "He;;p";
+        System.out.println(s1);
+//
+//        // Identify almost memory location (System Identify Location).
+//        System.out.println(System.identityHashCode(s1));
+//        System.out.println(System.identityHashCode(s2));
+//        System.out.println(System.identityHashCode(s3));
+
+//        Son son = new Son();
+//        son.No();
 
     }
     /**
